@@ -28,7 +28,7 @@ export let loader: LoaderFunction = async ({params}) => {
   // Sometimes your code just blows up and you never anticipated it. Remix will
   // automatically catch it and send the UI to the error boundary.
   if (params.id === 'kaboom') {
-    lol();
+    // lol();
   }
 
   // but otherwise the record was found, user has access, so we can do whatever
