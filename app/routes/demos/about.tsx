@@ -3,23 +3,21 @@ import type {MetaFunction, LinksFunction} from 'remix';
 
 import stylesUrl from '~/styles/demos/about.css';
 
-export let meta: MetaFunction = () => {
-  return {
-    title: 'About Remix',
-  };
+export const meta: MetaFunction = () => {
+  return {title: 'About Remix'};
 };
 
-export let links: LinksFunction = () => {
+export const links: LinksFunction = () => {
   return [{rel: 'stylesheet', href: stylesUrl}];
 };
 
-export default function Index() {
+export default function Index(): JSX.Element {
   return (
     <div className="about">
       <div className="about__intro">
         <h2>About Us</h2>
-        <p>
-          Ok, so this page isn't really <em>about us</em>, but we did want to
+        <p className="foo">
+          Ok, so this page isnt really <em>about us</em>, but we did want to
           show you a few more things Remix can do.
         </p>
         <p>

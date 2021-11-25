@@ -1,10 +1,10 @@
-import {useCatch, Link, json, useLoaderData, Outlet} from 'remix';
+import {Link, Outlet, MetaFunction} from 'remix';
 
-export function meta() {
+export const meta: MetaFunction = () => {
   return {title: 'Boundaries Demo'};
-}
+};
 
-export default function Boundaries() {
+export default function Boundaries(): JSX.Element {
   return (
     <div className="remix__page">
       <main>
