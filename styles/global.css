@@ -12,28 +12,35 @@
   --font-body: -apple-system, 'Segoe UI', Helvetica Neue, Helvetica, Roboto,
     Arial, sans-serif, system-ui, 'Apple Color Emoji', 'Segoe UI Emoji';
 }
+
 :focus {
   outline: var(---color-links) solid 2px;
   outline-offset: 2px;
   color: var(--color-links);
 }
+
 html,
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
 }
+
 body {
   font-family: var(--font-body);
 }
+
 a {
   color: var(--color-links);
 }
+
 a:hover {
   color: var(--color-links-hover);
 }
+
 hr {
   background-color: var(--color-border);
 }
+
 input:where([type='text']),
 input:where([type='search']) {
   display: block;
@@ -47,6 +54,7 @@ input:where([type='search']) {
   font: inherit;
   line-height: 1;
 }
+
 .sr-only {
   position: absolute;
   overflow: hidden;
@@ -58,6 +66,7 @@ input:where([type='search']) {
   border-width: 0;
   white-space: nowrap;
 }
+
 .container {
   --gutter: 16px;
   margin-right: auto;
@@ -65,6 +74,7 @@ input:where([type='search']) {
   max-width: calc(100% - var(--gutter) * 2);
   width: 1024px;
 }
+
 header {
   background: var(--color-primary);
 }

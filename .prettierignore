@@ -1,2 +1,5 @@
 node_modules
 CHANGELOG.md
+app/styles
+.cache
+build

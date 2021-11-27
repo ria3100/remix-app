@@ -5,7 +5,7 @@
   "license": "",
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev",
+    "dev": "yarn watch:css && remix dev",
     "postinstall": "remix setup node",
     "start": "remix-serve build",
     "lint": "run-p -l lint:*",
@@ -13,7 +13,9 @@
     "lint:css": "stylelint './**/*.css'",
     "format": "run-p -l format:*",
     "format:prettier": "prettier --config ./.prettierrc.js --write '**/*.+(ts|tsx|js|md|json)'",
-    "format:ts": "yarn gts fix '**/*.tsx' '**/*.ts'"
+    "format:ts": "yarn gts fix '**/*.tsx' '**/*.ts'",
+    "watch:css": "postcss styles --base styles --dir app/styles -w",
+    "build:css": "postcss styles --base styles --dir app/styles --env production"
   },
   "dependencies": {
     "@remix-run/react": "^1.0.4",
@@ -30,6 +32,7 @@
     "@types/styled-components": "^5.1.15",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
+    "autoprefixer": "^10.4.0",
     "eslint": "^8.3.0",
     "eslint-config-next": "^12.0.4",
     "eslint-config-prettier": "^8.3.0",
@@ -42,13 +45,18 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "gts": "^3.1.0",
     "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.3",
+    "postcss-cli": "^9.0.2",
+    "postcss-import": "^14.0.2",
+    "postcss-nested": "^5.0.6",
     "prettier": "^2.4.1",
     "stylelint": "^14.1.0",
     "stylelint-config-recommended": "^6.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-order": "^5.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
-    "typescript": "^4.1.2"
+    "typescript": "^4.1.2",
+    "@types/node": "^14.11.2"
   },
   "engines": {
     "node": ">=14"
