@@ -1,16 +1,50 @@
-/*
- * You can just delete everything here or keep whatever you like, it's just a
- * quick baseline!
- */
+@custom-media --breakpoint-se (max-width: 320px);
+@custom-media --breakpoint-tablet (min-width: 768px);
+@custom-media --breakpoint-desktop (min-width: 1024px);
+
 :root {
-  --color-foreground: hsl(0, 0%, 7%);
+  --space: 6px;
+
+  /* colors */
+  --color-foreground: rgb(93, 96, 79);
   --color-background: #f5f6f7;
   --color-links: hsl(213, 100%, 52%);
   --color-links-hover: hsl(213, 100%, 43%);
-  --color-border: hsl(0, 0%, 82%);
+  --color-border: #c2c4b7;
   --color-primary: #272821;
-  --font-body: -apple-system, 'Segoe UI', Helvetica Neue, Helvetica, Roboto,
-    Arial, sans-serif, system-ui, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --color-container: #fff;
+
+  /* radius */
+  --radius-s: 2px;
+  --radius-m: 4px;
+  --radius-l: 8px;
+
+  /* shadow */
+  --shadow-10: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
+
+  /* font-size */
+  --font-size-10: 0.625rem; /* 10px */
+  --font-size-20: 0.75rem; /* 12px */
+  --font-size-30: 0.875rem; /* 14px */
+  --font-size-40: 1rem; /* 16px */
+  --font-size-50: 1.25rem; /* 20px */
+  --font-size-60: 1.5rem; /* 24px */
+  --font-size-70: 2rem; /* 32px */
+  --font-size-80: 2.5rem; /* 40px */
+
+  /* line-height */
+  --line-height-10: 1;
+  --line-height-20: 1.5;
+  --line-height-30: 2;
+
+  /* letter-spacing */
+  --letter-spacing-10: 0.1em;
+  --letter-spacing-20: 0.15em;
+  --letter-spacing-30: 0.2em;
+
+  --font-body: 'Noto Sans JP', -apple-system, 'Segoe UI', Helvetica Neue,
+    Helvetica, Roboto, Arial, sans-serif, system-ui, 'Apple Color Emoji',
+    'Segoe UI Emoji';
 }
 
 :focus {
@@ -41,40 +75,195 @@ hr {
   background-color: var(--color-border);
 }
 
-input:where([type='text']),
-input:where([type='search']) {
-  display: block;
-  padding-right: 0.5em;
-  padding-left: 0.5em;
-  width: 100%;
-  height: calc(1ch + 1.5em);
-  border: 1px solid var(--color-border);
-  background-color: hsl(0 0% 100% / 20%);
-  color: var(--color-foreground);
-  font: inherit;
-  line-height: 1;
+.Container {
+  max-width: 960px;
+  margin: 0 auto;
 }
 
-.sr-only {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  margin: -1px;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-  border-width: 0;
-  white-space: nowrap;
-}
-
-.container {
-  --gutter: 16px;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: calc(100% - var(--gutter) * 2);
-  width: 1024px;
-}
-
-header {
+.Header {
+  height: 32px;
   background: var(--color-primary);
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: var(--space);
+    width: 100%;
+    content: '';
+  }
+}
+
+.Footer {
+  margin-top: calc(var(--space) * 12);
+  background: #fff;
+  padding: calc(var(--space) * 5);
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: var(--space);
+    width: 100%;
+    content: '';
+    background-image: linear-gradient(90deg, #d9afd9 0%, #97d9e1 100%);
+  }
+
+  & > section {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: calc(var(--space) * 3);
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    & > .photo {
+      & img {
+        border-radius: 50%;
+        width: 100px;
+      }
+    }
+
+    & > .bio {
+      margin: calc(var(--space) * 4) 0 0 0;
+      line-height: 1.5rem;
+
+      & > .name {
+        font-size: var(--font-size-50);
+        font-weight: bold;
+        text-align: center;
+      }
+
+      & > .sentences {
+        margin: calc(var(--space) * 2) 0 0 0;
+        font-size: var(--font-size-40);
+      }
+
+      & > .sns {
+        margin-top: calc(var(--space) * 2);
+
+        & > a {
+          color: var(--color-foreground);
+
+          & > svg {
+            margin-left: var(--space);
+          }
+        }
+      }
+    }
+  }
+}
+
+.FirstView {
+  margin-top: -32px;
+  min-height: 500px;
+  height: 70vh;
+  background: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: var(--space);
+    width: 100%;
+    content: '';
+    background-image: linear-gradient(90deg, #d9afd9 0%, #97d9e1 100%);
+  }
+
+  & > h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 90px;
+    color: var(--color-background);
+    text-align: center;
+    letter-spacing: 0.1rem;
+  }
+
+  & > h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+    color: var(--color-background);
+    text-align: center;
+    letter-spacing: 0.1rem;
+  }
+}
+
+.ZennList {
+  display: grid;
+  gap: 32px;
+  margin: calc(var(--space) * 12) 0 0;
+  padding: 0 calc(var(--space) * 3);
+
+  & .ZennListItem {
+    display: flex;
+    padding: calc(var(--space) * 3);
+    flex-direction: column;
+    background: var(--color-container);
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-10);
+
+    & .title {
+      display: block;
+      font-weight: bold;
+      font-size: var(--font-size-50);
+      color: var(--color-foreground);
+      text-decoration: none;
+
+      & > img {
+        margin: 5px calc(var(--space) * 1.5) 0 0;
+        height: var(--font-size-50);
+        float: left;
+      }
+    }
+
+    & .description {
+      margin-top: calc(var(--space) * 2);
+      color: var(--color-foreground);
+      text-decoration: none;
+    }
+
+    & .pubDate {
+      font-size: var(--font-size-30);
+      letter-spacing: 0.05rem;
+    }
+
+    & .topics {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      margin-top: calc(var(--space) * 2);
+
+      & > svg {
+        margin: 4px var(--space) 0 0;
+        display: inline;
+      }
+
+      & > ul {
+        display: inline;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        & > li {
+          float: left;
+          border: 1px solid #ddd;
+          background: #f3f3f3;
+          padding: 0 calc(var(--space) * 1);
+          margin-right: calc(var(--space) * 1.5);
+          border-radius: var(--radius-s);
+          font-size: var(--font-size-30);
+          letter-spacing: 0.05rem;
+        }
+      }
+    }
+  }
 }

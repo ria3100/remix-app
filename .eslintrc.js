@@ -3,7 +3,6 @@ module.exports = {
     './node_modules/gts',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@next/next/recommended',
   ],
   plugins: [
     '@typescript-eslint',

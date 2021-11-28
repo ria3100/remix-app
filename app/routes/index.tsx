@@ -1,10 +1,9 @@
 import type {MetaFunction, LoaderFunction, LinksFunction} from 'remix';
 import {useLoaderData, json} from 'remix';
-import {fetchArticles, Article} from '~/utils/articles';
+import type {ZennArticle, NoteArticle} from '~/utils/articles';
+import {fetchZennArticles, fetchNoteArticles} from '~/utils/articles';
 import {FirstView} from '~/components/fragments/FirstView';
-import {ArticleList} from '~/components/fragments/ArticleList';
-
-import firstViewStylesUrl from '~/styles/fragments/firstView.css';
+import {ZennList} from '~/components/fragments/ZennList';
 
 export const links: LinksFunction = () => {
   return [
@@ -12,7 +11,10 @@ export const links: LinksFunction = () => {
       rel: 'stylesheet',
       href: 'https://cdn.jsdelivr.net/npm/modern-css-reset/dist/reset.min.css',
     },
-    {rel: 'stylesheet', href: firstViewStylesUrl},
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;900&display=swap',
+      rel: 'stylesheet',
+    },
     // {
     //   rel: 'stylesheet',
     //   href: darkStylesUrl,
@@ -22,13 +24,15 @@ export const links: LinksFunction = () => {
 };
 
 interface IndexData {
-  articles: Article[];
+  noteArticles: NoteArticle[];
+  zennArticles: ZennArticle[];
 }
 
 export const loader: LoaderFunction = async () => {
-  const articles = await fetchArticles();
+  const noteArticles = await fetchNoteArticles();
+  const zennArticles = await fetchZennArticles();
 
-  const data: IndexData = {articles};
+  const data: IndexData = {zennArticles, noteArticles};
 
   return json(data);
 };
@@ -46,7 +50,10 @@ export default function Index(): JSX.Element {
   return (
     <main>
       <FirstView />
-      <ArticleList articles={data.articles} />
+
+      <section className="Container">
+        <ZennList articles={data.zennArticles} />
+      </section>
     </main>
   );
 }
